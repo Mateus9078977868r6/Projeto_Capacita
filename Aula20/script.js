@@ -1,23 +1,38 @@
-class Negativo extends Error {
+class Retirar extends Error {
     constructor() {
-        super("O número deve ser positivo.");
+        super("Saldo insuficiente para fazer essa operação");
     }
 }
-class String extends Error {
-    constructor() {
-        super("Isso deve ser um número!");
+let conta_bancaria = {
+    titular: "Mateus",
+    saldo: 1000,
+    depositar: function (valor) {
+        this.saldo = this.saldo + valor
+        return this.saldo
+    },
+    retirar: function (valor) {
+        try {
+            if (this.saldo < valor) {
+                throw new Retirar();
+            }
+            this.saldo = this.saldo - valor
+            return this.saldo
+        } catch (error) {
+            console.log(error.name);
+            console.log(error.message);
+        }
+
+    },
+    exibir_saldo: function () {
+        console.log("Valor = R$" + conta_bancaria.saldo)
     }
-}
-try{
-    let a = Number(prompt("Digite o valor de a: "));
-    if(isNaN(a)){
-        throw new String();
-    }
-    if(a<0){
-        throw new Negativo();
-    }
-    console.log(a);
-}catch(erro){
-    console.log(erro.name);
-    console.log(erro.message);
-}
+
+};
+
+conta_bancaria.exibir_saldo();
+conta_bancaria.depositar(500);
+conta_bancaria.exibir_saldo();
+conta_bancaria.retirar(20000);
+conta_bancaria.exibir_saldo();
+conta_bancaria.retirar(1000);
+conta_bancaria.exibir_saldo();
