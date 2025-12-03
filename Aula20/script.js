@@ -32,7 +32,8 @@ let conta_bancaria = {
 conta_bancaria.exibir_saldo();
 conta_bancaria.depositar(500);
 conta_bancaria.exibir_saldo();
-conta_bancaria.retirar(20000);
+conta_bancaria.retirar(200);
 conta_bancaria.exibir_saldo();
 conta_bancaria.retirar(1000);
+
 conta_bancaria.exibir_saldo();
