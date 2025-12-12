@@ -1,0 +1,42 @@
+* {
+    box-sizing: border-box;
+}
+body{
+    
+}
+nav{    
+    gap:30px;
+    display: inline-block;
+    display: flex
+}
+#cabeca{
+    background-color: lightblue;
+    margin: 0px;
+    padding: 0%;
+}
+h3,h4{
+    color: brown
+}
+p,li,#a{
+    color:black
+}
+#texto1,h3{
+    font-family: 'Courier New', Courier, monospace;
+}
+.lista1{
+    font-family: 'Courier New', Courier, monospace;
+}
+#p{
+    color: green;
+}   
+.img{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 170px;
+}
+#footer{
+    margin-top: 150px;
+    color: brown;
+    text-align: center;
+}
