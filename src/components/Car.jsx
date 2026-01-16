@@ -1,0 +1,9 @@
+function Car(props) {
+    const {brand, model} = props;
+    return (
+        <>
+            <h2>I love my {brand} {model} !</h2>
+        </>
+     );
+}
+export default Car; 
