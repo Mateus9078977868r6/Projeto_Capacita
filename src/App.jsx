@@ -1,41 +1,33 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react';
+import { createRoot } from 'react-dom/client';
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
-import './App.css'
-import Car from './components/Car.jsx';
-import Computer from './components/Computer.jsx';
-import { useState } from 'react';
-import { createRoot } from 'react-dom/client';
+import './App.css';
 
-function App() {
-  let x = "I5"
-  return (
-    <>
-      <Car brand="Ford" model="Mustang" color="red" year={1969} />
-    </>
-  )
+
+function Login() {
+  const [email, setEmail] = useState("");
+  const [erro, setErro] = useState(null);
+
+  const handleSubmit = (evento) => {
+    evento.preventDefault();
+    if (!email) {
+      setErro("Preencha o campo!");
+      return;
+    }
+    if (!email.includes("@") || !email.includes(".")) {
+      setErro("Digite um email válido.");
+      return;
+    }
+    setErro(null); 
+    alert("Login realizado com sucesso! Bem-vindo " + email);
+
+  };
+
+  return <h1>I've rendered {count} times!</h1>;
 }
-export default App;
-
-function FavoriteColor() {
-
-  const [color, setColor] = useState("red");
-
-  return <h1>My favorite color is {color}!</h1>
-
-}
-
 
 createRoot(document.getElementById('root')).render(
-
-  <FavoriteColor />
-
+  <Timer />
 );
-
-<button
-
-  type="button"
-
-  onClick={() => setColor("blue")}
-
->Blue</button>
+export default Login;
