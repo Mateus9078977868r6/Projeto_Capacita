@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário de Cadastro</title>
+    <style>
+        /* Adicione seus estilos aqui */
+        .error {
+            color: red;
+            font-size: 0.8em;
+            margin-top: 5px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+
+
+<body>
+    <h1>Formulário de Cadastro</h1>
+    <form id="formCadastro">
+        <div class="form-group">
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" required>
+            <div id="nomeErro" class="error"></div>
+        </div>
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" required>
+            <div id="emailErro" class="error"></div>
+        </div>
+        <div class="form-group">
+            <label for="senha">Senha:</label>
+            <input type="password" id="senha" required>
+            <div id="senhaErro" class="error"></div>
+        </div>
+        <div class="form-group">
+            <label for="confirmaSenha">Confirme a senha:</label>
+            <input type="password" id="confirmaSenha" required>
+            <div id="confirmaSenhaErro" class="error"></div>
+        </div>
+        <button type="submit" id="cadastrar" disabled>Cadastrar</button>
+    </form>
+    <script>
+        // Seu código JavaScript aqui
+        const form = document.getElementById("formCadastro");
+        const imput_nome = document.getElementById("nome");
+        const imput_senha = document.getElementById("senha");
+        const imput_email = document.getElementById("email");
+        const imput_confirma = document.getElementById("confirmaSenha");
+        const btnCadastrar = document.getElementById("cadastrar");
+
+        function verificar_formulario() {
+            const nome = imput_nome.value.trim();
+            const email = imput_email.value.trim();
+            const senha = imput_senha.value.trim();
+            const confirma = imput_confirma.value.trim();
+
+            const regexEmail = /.+@.+\..+/; // Regex simples para "algo@algo.algo"
+            const regexContemDigito = /\d/;
+
+            const nomeOk = nome.length > 3;
+            const emailOk = regexEmail.test(email);
+            const senhaOk = senha.length >= 6 && regexContemDigito.test(senha);
+            const confirmaOk = senha === confirma; // Confirmação também precisa ser válida
+
+            if (nomeOk && emailOk && senhaOk && confirmaOk) {
+                btnCadastrar.disabled = false;
+            } else {
+                btnCadastrar.disabled = true;
+            }
+        }
+        imput_nome.addEventListener("input", function () {
+            let nome = imput_nome.value.trim();
+            if (nome.length > 3) {
+
+            } else {
+                alert("Erro: nome incorreto");
+            }
+            verificar_formulario();
+        });
+
+        imput_email.addEventListener("input", function () {
+            let email = imput_email.value.trim();
+            const regexEmail = /.+@.+\..+/; // (Definindo a regra)
+            if (regexEmail.test(email)) {
+
+            } else {
+                alert("Erro: email incorreto");
+            }
+            verificar_formulario();
+        });
+
+        imput_senha.addEventListener("input", function () {
+            let senha = imput_senha.value.trim();
+            const regexContemDigito = /\d/;
+            if (senha.length >= 6 && regexContemDigito.test(senha)) {
+
+            } else {
+                alert("Erro: senha incorreta");
+            }
+
+            let confirma = imput_confirma.value.trim();
+            if (senha === confirma) {
+            
+            } else {
+                alert("Erro: senhas diferentes na confirmação");
+            }
+            verificar_formulario();
+        });
+        imput_confirma.addEventListener("input", function () {
+            let confirma = imput_confirma.value.trim();
+
+            // CORREÇÃO: A variável 'senha' não existia aqui.
+            // Precisamos pegar o valor do input da senha novamente.
+            let senha = imput_senha.value.trim();
+
+            if (senha === confirma) {
+
+            } else {
+                alert("Erro: senhas diferentes na confirmação");
+            }
+            verificar_formulario();
+        });
+
+        
+    </script>
+</body>
+
+</html>
