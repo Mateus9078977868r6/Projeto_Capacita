@@ -1,33 +1,50 @@
-import { useState, useEffect } from 'react';
-import { createRoot } from 'react-dom/client';
+import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
-import './App.css';
+import './App.css'
 
+import styled from 'styled-components'; // Importação obrigatória
 
-function Login() {
-  const [email, setEmail] = useState("");
-  const [erro, setErro] = useState(null);
+// 1. Criamos o "Container" (antiga div.card)
+// Note o uso das crases (`) para escrever o CSS
+const CardContainer = styled.div`
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 16px;
+    width: 250px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    background-color: white;
+    text-align: center;
+    transition: transform 0.2s;
 
-  const handleSubmit = (evento) => {
-    evento.preventDefault();
-    if (!email) {
-      setErro("Preencha o campo!");
-      return;
+    &:hover {
+        transform: translateY(-5px);
     }
-    if (!email.includes("@") || !email.includes(".")) {
-      setErro("Digite um email válido.");
-      return;
-    }
-    setErro(null); 
-    alert("Login realizado com sucesso! Bem-vindo " + email);
+`;
 
-  };
+// 2. Criamos o "Titulo" (antigo h2)
+const Titulo = styled.h2`
+    color: #333;
+    font-size: 1.5rem;
+    margin: 10px 0;
+`;
 
-  return <h1>I've rendered {count} times!</h1>;
+// 3. Criamos a "Imagem" (antiga img)
+const ImagemProduto = styled.img`
+    width: 100%;
+    border-radius: 4px;
+    object-fit: cover;
+`;
+
+// 4. Criamos o componente React final
+function Card() {
+    return (
+        <CardContainer>
+            <ImagemProduto src="https://img.freepik.com/fotos-gratis/banana-fresca-isolada_144627-26867.jpg" alt="Produto" />
+            <Titulo>Nome do Produto</Titulo>
+            <Titulo>Descrição curta do produto feita com Styled Components.</Titulo>
+        </CardContainer>
+    );
 }
 
-createRoot(document.getElementById('root')).render(
-  <Timer />
-);
-export default Login;
+export default Card;
